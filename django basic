@@ -1,0 +1,15 @@
+# Install Django
+
+django-admin startproject projectname
+
+
+
+# install app
+
+python manage.py startapp appname
+
+
+
+# runserver
+
+python manage.py runserver
