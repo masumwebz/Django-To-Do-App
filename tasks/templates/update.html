@@ -1,0 +1,25 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            <h1 class="display-1">To Do App </h1>
+        </br>
+        </div>
+        <div class="col-md-6 offset-md-3">
+          <form method="POST" action="" class="form-inline">
+            {% csrf_token %}
+            {{form}}
+            <input class="btn btn-primary mb-2" type="submit" name="Create Task">
+        </form>
+      </br>
+            
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

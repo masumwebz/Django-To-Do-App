@@ -1,0 +1,39 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+            <h1 class="display-1">To Do App </h1>
+        </br>
+        </div>
+        <div class="col-md-6 offset-md-3">
+          <form method="POST" action="/" class="form-inline">
+            {% csrf_token %}
+            {{form.title}}
+            <input class="btn btn-primary mb-2" type="submit" name="Create Task">
+        </form>
+      </br>
+            <table class="table table-hover">
+                <tbody> {% for task in tasks %}
+                  <tr>
+                    <td>
+                      {% if task.complete == True %}
+                      <strike>{{task}}</strike>
+                      {% else %}
+                      <span>{{task}}</span>
+                      {% endif %}
+                      <a class="badge badge-info text-right " href="{% url 'update' task.id %}">Update</a>
+                      <a class="badge badge-danger text-right " href="{% url 'delete' task.id %}">Delete</a>
+                    </td>
+                  </tr>{% endfor %} 
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
