@@ -26,3 +26,57 @@
 # 4. four we create a model form of UserProfile
 # 5. then display this form at signup views & signup template
 # 6. save those two form at two model
+
+
+
+
+
+# How to login?
+# login views
+
+def loginpage(request):
+    # if request.user.is_authenticated:
+    #     return redirect('user_list')
+    # else:
+
+        if request.method == 'POST':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request, user)
+                return redirect('/')
+            else:
+                messages.info(request, 'pass ki vule gesen?')
+        context = {}
+
+        return render(request,'users/login.html',context)
+
+
+# login.html code 
+
+ {% for message in messages %}
+                    <div class="alert success"> {{ message }} </div>
+                {% endfor %}
+               <form method="POST" action="">
+                    {% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="username" placeholder="Username..." class="form-control">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+								<input type="password" name="password" placeholder="Password..." class="form-control" >
+						</div>
+
+							<div class="d-flex justify-content-center mt-3 login_container">
+				 				<input class="btn login_btn" type="submit" value="Login">
+				   			</div>
+                             
+					</form>
