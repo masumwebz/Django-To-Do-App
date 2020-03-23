@@ -8,6 +8,7 @@
                 <form action="" method="POST">
                     {% csrf_token %}
                     {{ signupform.as_p }}
+                    {{ upform.as_p }}
                     <input type ="submit" name="Signup">
                 </form>
 
